@@ -180,6 +180,7 @@ function loadFood() {
         }
     });  
 }
+const API_BASE_URL = "https://refrigerator-frvc.onrender.com";
 
 // 添加食材到 Local Storage
 function addIngredient() {
