@@ -179,7 +179,10 @@ function loadFood() {
             warningDiv.appendChild(warningMessage);
         }
     });  
+    
 }
+const API_BASE_URL = "https://refrigerator-frvc.onrender.com";
+
 
 // 添加食材到 Local Storage
 function addIngredient() {
@@ -220,7 +223,7 @@ function addIngredient() {
     };
 
     // 發送 POST 請求到 Node.js 後端
-    fetch('http://localhost:8000/save_data', {
+    fetch(`${API_BASE_URL}/save_data`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -311,7 +314,7 @@ window.onload = function () { // 頁面載入時執行
 //fetchRecipes : 從一個固定的 JSON 檔案（recipe.json）中讀取食譜，並顯示到網頁。
 async function fetchRecipes() {
     try {
-        const response = await fetch('http://localhost:8000/icook/recipe.json'); // 從本地後端伺服器獲取資料
+        const response = await fetch(`${API_BASE_URL}icook/recipe.json`); // 從本地後端伺服器獲取資料
         const recipes = await response.json();
 
         const container = document.getElementById('recipes-container');
@@ -355,7 +358,7 @@ async function fetchRecipesFromFridge() {
 
          // 傳送食材清單到後端以觸發爬蟲
          // 發送包含食材的 POST 請求到 Node.js(8001) /fetch_recipes 路由
-        const response = await fetch('http://localhost:8001/fetch_recipes', { // 注意端口為 8001
+        const response = await fetch(`${API_BASE_URL}/fetch_recipes`, { // 注意端口為 8001
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ ingredients })
